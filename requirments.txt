@@ -1,0 +1,5 @@
+flask
+pyrebase4
+firebase-admin
+python-dotenv
+pytest

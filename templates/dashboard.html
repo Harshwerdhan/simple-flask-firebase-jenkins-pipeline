@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow p-4">
+    <h3 class="mb-3">Dashboard</h3>
+    <p>Welcome, <strong>{{ user }}</strong></p>
+
+    <h5>All Users</h5>
+    <ul class="list-group">
+        {% for u in users %}
+            <li class="list-group-item">{{ u }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
