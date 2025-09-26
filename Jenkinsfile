@@ -1,7 +1,5 @@
 pipelines{
-    agent{
-        label
-    }
+    agent any
 
     environment{
         // Setup enviroment variable for firebase
