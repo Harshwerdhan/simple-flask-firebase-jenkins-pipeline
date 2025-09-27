@@ -23,11 +23,19 @@ pipeline{
             }
         }
 
-        stage("Install dependancies"){
+        stage("Install Requirments"){
             steps{
+                sh 'sudo su -'
+                sh 'apt install -y python3-venv'
                 sh 'python3 -m venv flask-firebase-app'
                 sh 'source flask-firebase-app/bin/activate'
                 sh 'pip install --upgrade pip setuptools'
+
+            }
+        }
+
+        stage("Install dependancies"){
+            steps{
                 sh 'pip install -r requirments.txt'
             }
         }
