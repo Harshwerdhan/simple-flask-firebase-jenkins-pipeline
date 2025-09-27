@@ -25,8 +25,9 @@ pipeline{
 
         stage("Install dependancies"){
             steps{
-                sh ' python3 -m venv flask-firebase-app'
+                sh 'python3 -m venv flask-firebase-app'
                 sh 'source flask-firebase-app/bin/activate'
+                sh 'pip install --upgrade pip setuptools'
                 sh 'pip install -r requirments.txt'
             }
         }
