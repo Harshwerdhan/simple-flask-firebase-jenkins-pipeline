@@ -25,13 +25,17 @@ pipeline{
 
         stage("Install dependancies"){
             steps{
-                sh 'pip install -r .\requirments.txt'
+                sh ' python3 -m venv flask-firebase-app'
+                sh 'source flask-firebase-app/bin/activate'
+                sh 'pip install -r requirments.txt'
             }
         }
 
         stage("Run Test using pytest"){
             steps{
-                sh 'pytest .\tests\test_app.py'
+                dir('tests'){
+                    sh 'pytest test_app.py'
+                }
             }
         }
 
