@@ -1,9 +1,10 @@
 pipeline{
     agent {
-        docker {
-            image 'flask-firebase-python-venv-img'
-            args '-u root'  // ensures root user inside container
-        }
+        label any
+        // docker {
+        //     image 'flask-firebase-python-venv-img'
+        //     args '-u root'  // ensures root user inside container
+        // }
     }
 
     environment{
