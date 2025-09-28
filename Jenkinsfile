@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     parameters {
-        string(name: 'BRANCH', defaultValue: 'staging', description: 'Git branch to build')
+        string(name: 'BRANCH', defaultValue: 'main', description: 'Git branch to build')
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests')
         booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy to production')
     }
