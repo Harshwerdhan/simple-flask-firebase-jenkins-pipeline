@@ -62,10 +62,11 @@ jobs:
             - name: Run tests
               run: |
                   source flask-firebase-app/bin/activate
+                  pip install pytest
                   pytest tests/test_app.py -v --tb=short
 
     Run:
-        
+        needs: Test
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
