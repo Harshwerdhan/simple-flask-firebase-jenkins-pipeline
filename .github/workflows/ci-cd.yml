@@ -63,7 +63,8 @@ jobs:
               run: |
                   python3 -m venv flask-firebase-app
                   source flask-firebase-app/bin/activate
-                  pip install pytest
+                  pip install --upgrade pip setuptools
+                  pip install -r requirements.txt
                   pytest tests/test_app.py -v --tb=short
 
     Run:
