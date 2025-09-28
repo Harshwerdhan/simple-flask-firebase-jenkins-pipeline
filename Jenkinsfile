@@ -1,6 +1,20 @@
 pipeline {
     agent any   // Run on any available Jenkins agent
 
+    environment{
+        // Setup enviroment variable for firebase
+        FLASK_SECRET_KEY=credentials('FLASK_SECRET_KEY')
+        FIREBASE_API_KEY=credentials('FIREBASE_API_KEY')
+        FIREBASE_AUTH_DOMAIN=credentials('FIREBASE_AUTH_DOMAIN')
+        FIREBASE_DATABASE_URL=credentials('FIREBASE_DATABASE_URL')
+        FIREBASE_PROJECT_ID=credentials('FIREBASE_PROJECT_ID')
+        FIREBASE_STORAGE_BUCKET=credentials('FIREBASE_STORAGE_BUCKET')
+        FIREBASE_MESSAGING_SENDER_ID=credentials('FIREBASE_MESSAGING_SENDER_ID')
+        FIREBASE_APP_ID=credentials('FIREBASE_APP_ID')
+        FIREBASE_MEASUREMENT_ID=credentials('FIREBASE_MEASUREMENT_ID')
+        FIREBASE_SERVICE_ACCOUNT=credentials('FIREBASE_SERVICE_ACCOUNT')
+    }
+
     stages {
         stage('Checkout') {
             steps {
