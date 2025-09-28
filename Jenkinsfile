@@ -38,8 +38,8 @@ pipeline {
                 sh '''
                     python3 -m venv flask-firebase-app
                     . flask-firebase-app/bin/activate
-                    pip install --upgrade pip setuptools
                     pip install -r requirments.txt
+                    pip install --upgrade pip setuptools
                 '''
             }
         }
