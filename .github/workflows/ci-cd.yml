@@ -36,5 +36,6 @@ jobs:
                   pip install -r requirements.txt
                   pip install --upgrade pip setuptools
                   ls -a
+                  cat serviceAccountKey.json
                   PYTHONWARNINGS=ignore FLASK_ENV=production python app.py
                   # pytest tests/test_app.py -v --tb=short
