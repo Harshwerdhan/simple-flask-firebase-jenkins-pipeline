@@ -29,7 +29,8 @@ firebase = pyrebase.initialize_app(firebase_config)
 pb_auth = firebase.auth()
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate(os.getenv("FIREBASE_SERVICE_ACCOUNT"))
+firebase_json = os.getenv("FIREBASE_SERVICE_ACCOUNT")
+cred = credentials.Certificate(json.loads(firebase_json))
 firebase_admin.initialize_app(cred)
 
 
