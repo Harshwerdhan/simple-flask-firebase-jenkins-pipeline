@@ -7,7 +7,7 @@ on:
             - main
 
 jobs:
-    deploy:
+    Build:
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -26,23 +26,46 @@ jobs:
               run: |
                   pip install --upgrade pip setuptools
 
+    Setup_env:
+        runs-on: ubuntu-latest  # GitHub Actions Runner Images
+        steps:
+            - name: Checkout code on runner machine
+              uses: actions/checkout@v4  # It will chekout you repository under workplace
+
+              run: |
+                  echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > firebase-service-account.json
+
+              env:
+                FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
+                FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+                FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+                FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+                FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+                FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+                FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+                FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+                FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
+                FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
+
+
+    Test:
+        runs-on: ubuntu-latest  # GitHub Actions Runner Images
+        steps:
+            - name: Checkout code on runner machine
+              uses: actions/checkout@v4  # It will chekout you repository under workplace
+
+
             - name: Run tests
               run: |
                   pytest tests/test_app.py -v --tb=short
 
-            - name: Run application
-              env:
-                  FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
-                  FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-                  FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-                  FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
-                  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-                  FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
-                  FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
-                  FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-                  FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
-                  FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    Run:
+        runs-on: ubuntu-latest  # GitHub Actions Runner Images
+        steps:
+            - name: Checkout code on runner machine
+              uses: actions/checkout@v4  # It will chekout you repository under workplace
 
+            - name: Run application
               run: |
                   PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
 
