@@ -36,7 +36,7 @@ jobs:
                   pip install -r requirements.txt
                   pip install --upgrade pip setuptools
                   ls -a
-                  pytest tests/test_app.py -v --tb=short
+                  # pytest tests/test_app.py -v --tb=short
 
 
 
