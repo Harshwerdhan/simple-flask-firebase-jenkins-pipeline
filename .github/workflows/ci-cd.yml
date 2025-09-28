@@ -13,13 +13,39 @@ jobs:
             - name: Checkout code on runner machine
               uses: actions/checkout@v4  # It will chekout you repository under workplace
 
-            
-            - name: Run some commands
+            - name: Create virtual environment 
               run: |   # | For Run multiple command with diffrent lines
                   python3 -m venv flask-firebase-app
                   source flask-firebase-app/bin/activate
+
+            - name: Install dependencies
+              run: |
                   pip install -r requirements.txt
+
+            - name: Upgrade pip and setuptools
+              run: |
                   pip install --upgrade pip setuptools
-                  pytest tests/test_app.py
+
+            - name: Run tests
+              run: |
+                  pytest tests/test_app.py -v --tb=short
+
+            - name: Run application
+               env:
+                  FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
+                  FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+                  FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+                  FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+                  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+                  FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+                  FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+                  FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+                  FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
+                  FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+                  
+              run: |
                   PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
+
+            - name: Deactivate virtual environment
+              run: |
                   deactivate
