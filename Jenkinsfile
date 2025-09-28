@@ -12,10 +12,10 @@ pipeline {
         stage('Set up Python venv') {
             steps {
                 sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install -r requirements.txt
+                    python3 -m venv flask-firebase-app
+                    . flask-firebase-app/bin/activate
+                    pip install --upgrade pip setuptools
+                    pip install -r requirments.txt
                 '''
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
-                    source venv/bin/activate
+                    . flask-firebase-app/bin/activate
                     pytest --maxfail=1 --disable-warnings -q
                 '''
             }
@@ -32,7 +32,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 sh '''
-                    source venv/bin/activate
+                    . flask-firebase-app/bin/activate
                     python app.py
                 '''
             }
