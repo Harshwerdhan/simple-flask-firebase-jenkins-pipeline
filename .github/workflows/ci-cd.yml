@@ -7,28 +7,7 @@ on:
             - main
 
 jobs:
-    Build:
-        runs-on: ubuntu-latest  # GitHub Actions Runner Images
-        steps:
-            - name: Checkout code on runner machine
-              uses: actions/checkout@v4  # It will chekout you repository under workplace
-
-            - name: Create virtual environment 
-              run: |   # | For Run multiple command with diffrent lines
-                  python3 -m venv flask-firebase-app
-                  source flask-firebase-app/bin/activate
-
-            - name: Upgrade pip and setuptools
-              run: |
-                  pip install --upgrade pip setuptools
-                  
-            - name: Install dependencies
-              run: |
-                  pip install -r requirements.txt
-
-
     Setup_env:
-        needs: Build
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -51,21 +30,26 @@ jobs:
                 FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
 
 
-    Test:
+    Build and Test:
         needs: Setup_env
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
               uses: actions/checkout@v4  # It will chekout you repository under workplace
 
-
-            - name: Run tests
-              run: |
-                  ls -al
+            - name: Create virtual environment 
+              run: |   # | For Run multiple command with diffrent lines
+                  python3 -m venv flask-firebase-app
+                  source flask-firebase-app/bin/activate
+                  pip install -r requirements.txt
+                  pip install --upgrade pip setuptools
                   pytest tests/test_app.py -v --tb=short
+                  ls -a
+
+
 
     Run:
-        needs: Test
+        needs: Build and Test
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
