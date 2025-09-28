@@ -7,7 +7,7 @@ on:
             - main
 
 jobs:
-    Setup_env:
+    "Setup environment":
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -30,8 +30,8 @@ jobs:
                 FIREBASE_SERVICE_ACCOUNT: firebase-service-account.json
 
 
-    Build and Test:
-        needs: Setup_env
+    "Build and Test":
+        needs: "Setup environment"
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -48,8 +48,8 @@ jobs:
 
 
 
-    Run:
-        needs: Build and Test
+    "Run":
+        needs: "Build and Test"
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
