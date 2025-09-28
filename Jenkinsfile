@@ -44,16 +44,16 @@ pipeline {
             }
         }
 
-        stage('Debug Network') {
-            steps {
-                sh '''
-                    echo "Checking DNS and internet..."
-                    ping -c 2 google.com || true
-                    curl -I https://firebase.google.com || true
-                    env | grep FIREBASE || true
-                '''
-            }
-        }
+        // stage('Debug Network') {
+        //     steps {
+        //         sh '''
+        //             echo "Checking DNS and internet..."
+        //             ping -c 2 google.com || true
+        //             curl -I https://firebase.google.com || true
+        //             env | grep FIREBASE || true
+        //         '''
+        //     }
+        // }
 
         // stage('Run Tests') {
         //     steps {
@@ -68,7 +68,8 @@ pipeline {
             steps {
                 sh '''
                     . flask-firebase-app/bin/activate
-                    PYTHONWARNINGS="ignore" python3 app.py
+                    PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
+
                 '''
             }
         }
