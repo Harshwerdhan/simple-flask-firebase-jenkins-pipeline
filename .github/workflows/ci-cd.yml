@@ -49,7 +49,7 @@ jobs:
 
             - name: Run application
               run: |
-                  PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
+                  PYTHONWARNINGS=ignore FLASK_ENV=production python app.py
 
             - name: Deactivate virtual environment
               run: |
