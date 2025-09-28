@@ -57,7 +57,7 @@ pipeline {
             steps {
                 sh '''
                     . flask-firebase-app/bin/activate
-                    python app.py
+                    python3 app.py
                 '''
             }
         }
