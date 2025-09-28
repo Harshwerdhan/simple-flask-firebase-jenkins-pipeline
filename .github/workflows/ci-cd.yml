@@ -13,10 +13,6 @@ jobs:
             - name: Checkout code on runner machine
               uses: actions/checkout@v4  # It will chekout you repository under workplace
 
-            - name: Setup environment variables
-              run: |
-                  echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > serviceAccountKey.json
-
               env:
                 FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
                 FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -27,7 +23,7 @@ jobs:
                 FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
                 FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
                 FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
-                FIREBASE_SERVICE_ACCOUNT: serviceAccountKey.json
+                FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
             - name: Create virtual environment 
               run: |   # | For Run multiple command with diffrent lines
@@ -35,7 +31,5 @@ jobs:
                   # source flask-firebase-app/bin/activate
                   pip install -r requirements.txt
                   pip install --upgrade pip setuptools
-                  ls -a
-                  cat serviceAccountKey.json
                   PYTHONWARNINGS=ignore FLASK_ENV=production python app.py
                   # pytest tests/test_app.py -v --tb=short
