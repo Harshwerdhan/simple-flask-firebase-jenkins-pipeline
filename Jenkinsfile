@@ -44,6 +44,17 @@ pipeline {
             }
         }
 
+        stage('Debug Network') {
+            steps {
+                sh '''
+                    echo "Checking DNS and internet..."
+                    ping -c 2 google.com || true
+                    curl -I https://firebase.google.com || true
+                    env | grep FIREBASE || true
+                '''
+            }
+        }
+
         // stage('Run Tests') {
         //     steps {
         //         sh '''
