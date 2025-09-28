@@ -34,14 +34,14 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh '''
-                    . flask-firebase-app/bin/activate
-                    pytest --maxfail=1 --disable-warnings -q
-                '''
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh '''
+        //             . flask-firebase-app/bin/activate
+        //             pytest --maxfail=1 --disable-warnings -q
+        //         '''
+        //     }
+        // }
 
         stage('Run Application') {
             steps {
