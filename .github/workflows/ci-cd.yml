@@ -36,21 +36,5 @@ jobs:
                   pip install -r requirements.txt
                   pip install --upgrade pip setuptools
                   ls -a
-                  # pytest tests/test_app.py -v --tb=short
-
-
-
-    Run:
-        needs: Build_and_Test
-        runs-on: ubuntu-latest  # GitHub Actions Runner Images
-        steps:
-            - name: Checkout code on runner machine
-              uses: actions/checkout@v4  # It will chekout you repository under workplace
-
-            - name: Run application
-              run: |
                   PYTHONWARNINGS=ignore FLASK_ENV=production python app.py
-
-            - name: Deactivate virtual environment
-              run: |
-                  deactivate
+                  # pytest tests/test_app.py -v --tb=short
