@@ -27,6 +27,7 @@ jobs:
                   pip install --upgrade pip setuptools
 
     Setup_env:
+        needs: Build
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -50,6 +51,7 @@ jobs:
 
 
     Test:
+        needs: Setup_env
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
@@ -61,6 +63,7 @@ jobs:
                   pytest tests/test_app.py -v --tb=short
 
     Run:
+        needs: Test
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
