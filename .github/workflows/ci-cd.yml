@@ -27,7 +27,7 @@ jobs:
     
     - name: Run tests
       run: |
-        pytest tests/test_app.py -v --tb=short
+        pytest ./tests/test_app.py 
     
     - name: Run linting
       run: |
