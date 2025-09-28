@@ -31,7 +31,7 @@ jobs:
                   pytest tests/test_app.py -v --tb=short
 
             - name: Run application
-               env:
+              env:
                   FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
                   FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
                   FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
@@ -42,7 +42,7 @@ jobs:
                   FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
                   FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
                   FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-                  
+
               run: |
                   PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
 
