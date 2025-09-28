@@ -63,11 +63,11 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            sh 'pwd'
-            sh '. flask-firebase-app/bin/deactivate'   // make sure venv is deactivated
-            echo 'Pipeline finished!'
-        }
-    }
+    // post {
+    //     always {
+    //         sh 'pwd'
+    //         sh '. flask-firebase-app/bin/deactivate'   // make sure venv is deactivated
+    //         echo 'Pipeline finished!'
+    //     }
+    // }
 }
