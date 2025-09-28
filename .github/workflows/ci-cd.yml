@@ -17,14 +17,8 @@ jobs:
               run: |   # | For Run multiple command with diffrent lines
                   python3 -m venv flask-firebase-app
                   source flask-firebase-app/bin/activate
-
-            - name: Install dependencies
-              run: |
-                  pip install -r requirements.txt
-
-            - name: Upgrade pip and setuptools
-              run: |
                   pip install --upgrade pip setuptools
+                  pip install -r requirements.txt
 
     Setup_env:
         needs: Build
