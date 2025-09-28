@@ -15,11 +15,21 @@ pipeline {
         FIREBASE_SERVICE_ACCOUNT=credentials('FIREBASE_SERVICE_ACCOUNT')
     }
 
+    
+
     stages {
         stage('Checkout') {
             steps {
                 // Pull code from your repo
                 git branch: 'main', url: 'https://github.com/Harshwerdhan/simple-flask-firebase-jenkins-pipeline.git'
+            }
+        }
+
+        stage('Realease Flask PORT') {
+            steps {
+                sh '''#!/bin/bash
+                kill -9 $(cat flask.pid) || true
+                '''
             }
         }
 
