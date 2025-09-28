@@ -57,7 +57,7 @@ pipeline {
             steps {
                 sh '''
                     . flask-firebase-app/bin/activate
-                    PYTHONWARNINGS="ignore" python app.py
+                    PYTHONWARNINGS="ignore" python3 app.py
                 '''
             }
         }
