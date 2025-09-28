@@ -17,9 +17,14 @@ jobs:
               run: |   # | For Run multiple command with diffrent lines
                   python3 -m venv flask-firebase-app
                   source flask-firebase-app/bin/activate
+
+            - name: Upgrade pip and setuptools
+              run: |
                   pip install --upgrade pip setuptools
+                  
+            - name: Install dependencies
+              run: |
                   pip install -r requirements.txt
-                  pip install pytest
 
 
     Setup_env:
@@ -56,10 +61,11 @@ jobs:
 
             - name: Run tests
               run: |
+                  source flask-firebase-app/bin/activate
                   pytest tests/test_app.py -v --tb=short
 
     Run:
-        needs: Test
+        
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
