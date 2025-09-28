@@ -61,6 +61,7 @@ jobs:
 
             - name: Run tests
               run: |
+                  python3 -m venv flask-firebase-app
                   source flask-firebase-app/bin/activate
                   pip install pytest
                   pytest tests/test_app.py -v --tb=short
