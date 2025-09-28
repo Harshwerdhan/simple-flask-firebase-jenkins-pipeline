@@ -65,7 +65,7 @@ pipeline {
 
     post {
         always {
-            sh 'deactivate || true'   // make sure venv is deactivated
+            sh '. flask-firebase-app/bin/deactivate || true'   // make sure venv is deactivated
             echo 'Pipeline finished!'
         }
     }
