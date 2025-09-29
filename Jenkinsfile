@@ -25,13 +25,13 @@ pipeline {
             }
         }
 
-        stage('Realease Flask PORT') {
-            steps {
-                sh '''
-                    fuser -k 5005/tcp
-                '''
-            }
-        }
+        // stage('Realease Flask PORT') {
+        //     steps {
+        //         sh '''
+        //             lsof -ti:5005 | xargs kill -9
+        //         '''
+        //     }
+        // }
 
         stage('Set up Python venv') {
             steps {
