@@ -66,8 +66,20 @@ pipeline {
     }
 
     post {
-        always {
-            echo 'Pipeline finished!'
-        }
+    always {
+        echo 'Pipeline finished!'
     }
+    success {
+        mail to: 'harsh24314@email.com',
+            subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            body: "Good news! The build succeeded.\nCheck details at: ${env.BUILD_URL}"
+        // slackSend(color: 'good', message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' succeeded.")
+    }
+    failure {
+        mail to: 'harsh24314@email.com',
+            subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+            body: "Unfortunately, the build failed.\nCheck details at: ${env.BUILD_URL}"
+        // slackSend(color: 'danger', message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' failed.")
+    }
+}
 }
