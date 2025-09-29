@@ -28,11 +28,10 @@ jobs:
 
             - name: Create virtual environment 
               run: |   # | For Run multiple command with diffrent lines
-                  echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
                   # python3 -m venv flask-firebase-app
                   # source flask-firebase-app/bin/activate
-                #   pip install -r requirements.txt
-                #   pip install --upgrade pip setuptools
-                #   python app.py
+                  pip install -r requirements.txt
+                  pip install --upgrade pip setuptools
+                  python app.py
                   # pytest tests/test_app.py -v --tb=short
                   
