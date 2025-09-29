@@ -7,14 +7,13 @@ on:
             - staging  # Set branch name
 
 jobs:
-    Build_and_Test:
+    build:
         runs-on: ubuntu-latest  # GitHub Actions Runner Images
         steps:
             - name: Checkout code on runner machine
               uses: actions/checkout@v4  # It will chekout you repository under workplace
 
-            - name: Setup Enviromet and Run Application
-              uses: actions/setup-python@v4
+            - name: Setup Environment
               env:
                 FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
                 FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -27,10 +26,8 @@ jobs:
                 FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
                 FIREBASE_SERVICE_ACCOUNT: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-             run: |   # | For Run multiple command with diffrent lines
-                # python3 -m venv flask-firebase-app
-                # source flask-firebase-app/bin/activate
-                pip install -r requirements.txt
-                pip install --upgrade pip setuptools
-                python app.py
-                # pytest tests/test_app.py -v --tb=short
+                run: |
+                  pip install --upgrade pip
+                  pip install -r requirements.txt
+                  python app.py 
+                
