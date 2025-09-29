@@ -16,7 +16,9 @@ jobs:
 
 
             - name: Setup Environment
-              uses: actions/checkout@v4
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.8'  # Set your python version
               env:
                 FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
                 FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
