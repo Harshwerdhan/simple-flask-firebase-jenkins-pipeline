@@ -29,8 +29,8 @@ firebase = pyrebase.initialize_app(firebase_config)
 pb_auth = firebase.auth()
 
 # Initialize Firebase Admin SDK
-# cred = credentials.Certificate(os.getenv("FIREBASE_SERVICE_ACCOUNT"))
-# firebase_admin.initialize_app(cred)
+cred = credentials.Certificate(os.getenv("FIREBASE_SERVICE_ACCOUNT"))
+firebase_admin.initialize_app(cred)
 
 
 @app.route("/")
@@ -88,4 +88,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000, host="0.0.0.0/0")
+    app.run(debug=True, port=5000, host="0.0.0.0")
