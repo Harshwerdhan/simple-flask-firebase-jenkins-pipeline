@@ -31,6 +31,6 @@ jobs:
                   # source flask-firebase-app/bin/activate
                   pip install -r requirements.txt
                   pip install --upgrade pip setuptools
-                  PYTHONWARNINGS=ignore FLASK_ENV=production python app.py
+                  python app.py
                   # pytest tests/test_app.py -v --tb=short
                   
