@@ -33,7 +33,7 @@ jobs:
                 FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
                 FIREBASE_SERVICE_ACCOUNT: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-             run: |
+              run: |
                 pip install -r requirements.txt
                 pip install --upgrade pip
                 python app.py 
