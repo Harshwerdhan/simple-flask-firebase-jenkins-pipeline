@@ -61,7 +61,7 @@ The Jenkins pipeline (`Jenkinsfile`) will:
 - Deploy the Flask app
 - Send email notifications on build success or failure
 
-### Example Jenkins Linux Shell Commands
+### Jenkins Linux Shell Commands
 
 These are typical shell commands used in the Jenkins pipeline on a Linux agent:
 
