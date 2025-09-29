@@ -87,8 +87,10 @@ lsof -ti:5005 | xargs kill -9
 
 - Jenkins pipeline overview   
     ![Pipleline Overview](screenshots/pipeline-overview.png)    
-- Jenkins credentials 
+- Jenkins credentials     
     ![Jenkins credentials](screenshots/secrets.png)
+- Jenkins pipeline alert   
+    ![Jenkins pipeline alert](screenshots/alert_message.png)
 
 
 ## Notes
