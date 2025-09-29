@@ -40,5 +40,6 @@ jobs:
               run: |
                 pip install -r requirements.txt
                 pip install --upgrade pip
-                python app.py 
+                pytest tests/test_app.py -v --tb=short
+                python app.py & # Run the application in the background
                 
