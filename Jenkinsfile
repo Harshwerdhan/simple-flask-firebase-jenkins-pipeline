@@ -68,7 +68,7 @@ pipeline {
             steps {
                 sh '''
                     . flask-firebase-app/bin/activate
-                    PYTHONWARNINGS=ignore FLASK_ENV=production python3 app.py
+                    nohup python app.py &
 
                 '''
             }
