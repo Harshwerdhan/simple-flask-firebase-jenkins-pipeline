@@ -21,7 +21,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Pull code from your repo
-                git branch: 'main', url: 'https://github.com/Harshwerdhan/simple-flask-firebase-jenkins-pipeline.git'
+                git branch: 'staging', url: 'https://github.com/Harshwerdhan/simple-flask-firebase-jenkins-pipeline.git'
             }
         }
 
