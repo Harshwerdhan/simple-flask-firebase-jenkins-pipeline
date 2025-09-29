@@ -27,8 +27,8 @@ pipeline {
 
         stage('Realease Flask PORT') {
             steps {
-                sh '''#!/bin/bash
-                kill -9 $(cat flask.pid) || true
+                sh '''
+                    fuser -k 5005/tcp
                 '''
             }
         }
@@ -44,25 +44,15 @@ pipeline {
             }
         }
 
-        // stage('Debug Network') {
-        //     steps {
-        //         sh '''
-        //             echo "Checking DNS and internet..."
-        //             ping -c 2 google.com || true
-        //             curl -I https://firebase.google.com || true
-        //             env | grep FIREBASE || true
-        //         '''
-        //     }
-        // }
-
-        // stage('Run Tests') {
-        //     steps {
-        //         sh '''
-        //             . flask-firebase-app/bin/activate
-        //             pytest --maxfail=1 --disable-warnings -q
-        //         '''
-        //     }
-        // }
+        
+        stage('Run Tests') {
+            steps {
+                sh '''
+                    . flask-firebase-app/bin/activate
+                    pytest --maxfail=1 --disable-warnings -q tests/test_app.py
+                '''
+            }
+        }
 
         stage('Run Application') {
             steps {
@@ -75,11 +65,11 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         sh 'pwd'
-    //         sh '. flask-firebase-app/bin/deactivate'   // make sure venv is deactivated
-    //         echo 'Pipeline finished!'
-    //     }
-    // }
+    post {
+        always {
+            sh 'pwd'
+            sh '. flask-firebase-app/bin/deactivate'   // make sure venv is deactivated
+            echo 'Pipeline finished!'
+        }
+    }
 }
